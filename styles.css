@@ -1,0 +1,174 @@
+:not(:defined) > * {
+  display: none;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+model-viewer {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+}
+
+
+.progress-bar {
+  display: block;
+  width: 33%;
+  height: 10%;
+  max-height: 2%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  border-radius: 25px;
+  box-shadow: 0px 3px 10px 3px rgba(0, 0, 0, 0.5), 0px 0px 5px 1px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.progress-bar.hide {
+  visibility: hidden;
+  transition: visibility 0.3s;
+}
+
+.update-bar {
+  background-color: rgba(255, 255, 255, 0.9);
+  width: 0%;
+  height: 100%;
+  border-radius: 25px;
+  float: left;
+  transition: width 0.3s;
+}
+
+#opendoor {
+  /*background-image: url(ar_icon.png);*/
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  /*background-position: 12px 50%;*/
+  background-color: #fff;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  bottom: 16px;
+  padding: 0px 40px 0px 40px;
+  font-family: Roboto Regular, Helvetica Neue, sans-serif;
+  font-size: 14px;
+  color:#4285f4;
+  height: 36px;
+  line-height: 36px;
+  border-radius: 18px;
+  border: 1px solid #DADCE0;
+}
+
+#opendoor:active {
+  background-color: #E8EAED;
+}
+
+#opendoor:focus {
+  outline: none;
+}
+
+#opendoor:focus-visible {
+  outline: 1px solid #4285f4;
+}
+
+model-viewer[ar-status="session-started"] > #opendoor {
+  display: block;
+}
+
+@keyframes circle {
+  from { transform: translateX(-50%) rotate(0deg) translateX(50px) rotate(0deg); }
+  to   { transform: translateX(-50%) rotate(360deg) translateX(50px) rotate(-360deg); }
+}
+
+@keyframes elongate {
+  from { transform: translateX(100px); }
+  to   { transform: translateX(-100px); }
+}
+
+model-viewer > #ar-prompt {
+  position: absolute;
+  left: 50%;
+  bottom: 60px;
+  animation: elongate 2s infinite ease-in-out alternate;
+  display: none;
+}
+
+model-viewer[ar-status="session-started"] > #ar-prompt {
+  display: block;
+}
+
+model-viewer > #ar-prompt > img {
+  animation: circle 4s linear infinite;
+}
+.button-container {
+  display: flex;
+  flex-direction: column; /* stack vertically */
+  gap: 10px;              /* space between buttons */
+  align-items: center;    /* center horizontally */
+}
+
+.button-container button {
+  width: 160px;      /* or whatever width you want */
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 18px;
+  border: 1px solid #DADCE0;
+  background-color: #fff;
+  color: #4285f4;
+  cursor: pointer;
+}
+
+.button-container button:hover {
+  background-color: #f0f0f0;
+}
+
+.Hotspot {
+  /* Basic button style */
+  display: none;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 2px solid #0078d7;   /* blue border */
+  border-radius: 50%;          /* circular shape */
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+
+  /* Center the content */
+  align-items: center;
+  justify-content: center;
+
+  /* Add subtle shadow for depth */
+  box-shadow: 0 0 8px rgba(0, 120, 215, 0.6);
+
+  /* Transition for hover */
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.Hotspot:hover {
+  background-color: #0078d7;
+  box-shadow: 0 0 12px #005ea0;
+  border-color: #005ea0;
+}
+
+.Hotspot::before {
+  content: "+";
+  color: #0078d7;
+  font-weight: bold;
+  font-size: 18px;
+  user-select: none;
+  pointer-events: none;
+}
+
+.Hotspot:hover::before {
+  color: white;
+}
